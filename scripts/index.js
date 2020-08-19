@@ -43,7 +43,7 @@ equalButton.addEventListener('click',function(e){
     let firstNum = "";
     let secondNum = "";
     for (let char in inputArr){
-        if (numbReg.test(char) || char == "."){
+        if (numbReg.test(inputArr[char]) || inputArr[char] == "."){
             firstNum += inputArr[char]
             console.log(firstNum)
         }
