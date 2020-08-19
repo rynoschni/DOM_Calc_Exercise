@@ -1,36 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DOM Calc</title>
-    <link rel="stylesheet" href="css/index.css"/>
-</head>
-<body>
-    <div class="calculator grid-container">
-        <div class="input grid-item">
-            <input type="text" id="input" class="input screen" value="0"/>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="css/index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <h1 class="title">Snake Calculator</h1>
+        <div class="calculator">
+
+            <input id="input" type="text" class="calculator-screen" value="0" disabled />
+        
+            <div class="calculator-keys">
+        
+            <button id="plus" type="button" class="operator" value="+">+</button>
+            <button id="minus" type="button" class="operator" value="-">-</button>
+            <button id="mulit" type="button" class="operator" value="*">&times;</button>
+            <button id="divi" type="button" class="operator" value="/">&divide;</button>
+        
+            <button id="num7" class="number" type="button" value="7">7</button>
+            <button id="num8" class="number" type="button" value="8">8</button>
+            <button id="num9" class="number" type="button" value="9">9</button>
+        
+        
+            <button id="num4" class="number" type="button" value="4">4</button>
+            <button id="num5" class="number" type="button" value="5">5</button>
+            <button id="num6" class="number" type="button" value="6">6</button>
+        
+        
+            <button id="num1" class="number" type="button" value="1">1</button>
+            <button id="num2" class="number" type="button" value="2">2</button>
+            <button id="num3" class="number" type="button" value="3">3</button>
+        
+        
+            <button id="num0" class="number" type="button" value="0">0</button>
+            <button id="decimal" class="operator" type="button" class="decimal" value=".">.</button>
+            <button id="clear" ype="button" class="all-clear" value="all-clear">AC</button>
+        
+            <button id="result" type="button" class="equal-sign" value="=">Enter</button>
+        
+            </div>
         </div>
-        <button class="operator grid-item" value="*">*</button>
-        <button class="operator grid-item" value="/">/</button>
-        <button class="operator grid-item" value="-">-</button>
-        <button class="operator grid-item" value="+">+</button>
-        <button id="num1" class="number grid-item" value="1">1</button>
-        <button id="num2" class="number grid-item"value="2">2</button>
-        <button id="num3" class="number grid-item"value="3">3</button>
-        <button id="num4" class="number grid-item"value="4">4</button>
-        <button id="num5" class="number grid-item"value="5">5</button>
-        <button id="num6" class="number grid-item"value="6">6</button>
-        <button id="num7" class="number grid-item"value="7">7</button>
-        <button id="num8" class="number grid-item"value="8">8</button>
-        <button id="num9" class="number grid-item"value="9">9</button>
-        <button id="num0" class="number grid-item"value="0">0</button>
-        <button class="operator grid-item" value=".">.</button>
-        <button id="clear" class="operator grid-item clear">c</button>
-        <button class="equal grid-item" id="result">=</button>
-
-    </div>
-
+    </body>
     <script src="scripts/index.js"></script>
-</body>
+</html>
