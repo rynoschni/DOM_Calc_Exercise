@@ -38,6 +38,14 @@ clearButton.addEventListener('click', function(e){
     inputArr =[]
 })
 
-function provideResult (){
-    
-}
+equalButton.addEventListener('click',function(e){
+    let numbReg = /\d/;
+    let firstNum = "";
+    let secondNum = "";
+    for (let char in inputArr){
+        if (numbReg.test(char) || char == "."){
+            firstNum += inputArr[char]
+            console.log(firstNum)
+        }
+    }
+});
