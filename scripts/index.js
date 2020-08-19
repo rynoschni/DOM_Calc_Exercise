@@ -6,6 +6,9 @@ const equalButton = document.getElementById("result")
 
 let inputArr = [];
 const calcScreen = document.getElementById('input');
+let numbReg = /\d/;
+let equalPressed = false;
+let characterReg = /\D/
 
 numberButtonNode.forEach(function (button){
     button.addEventListener('click', function(e){
@@ -21,12 +24,18 @@ numberButtonNode.forEach(function (button){
  operationButtonNode.forEach(function(button){
     button.addEventListener('click', function(e){
         event.preventDefault();
-        inputArr = [...inputArr, button.value]
+        //inputArr = [...inputArr, button.value]
         console.log(inputArr)
+        //removed charreg
         if (calcScreen.value == 0){
-            calcScreen.value = button.value
+            calcScreen.value = 0
         }
-        else{calcScreen.value += button.value}
+        else if (characterReg.test(inputArr[inputArr.length-1])){
+            inputArr = [...inputArr]
+        }
+        else{
+            calcScreen.value += button.value
+            inputArr = [...inputArr, button.value]}
     })
  })
 
@@ -39,13 +48,42 @@ clearButton.addEventListener('click', function(e){
 })
 
 equalButton.addEventListener('click',function(e){
-    let numbReg = /\d/;
     let firstNum = "";
-    let secondNum = "";
+    let operationArr = [];
     for (let char in inputArr){
         if (numbReg.test(inputArr[char]) || inputArr[char] == "."){
             firstNum += inputArr[char]
             console.log(firstNum)
         }
+        else {
+            operationArr = [...operationArr, Number(firstNum), inputArr[char]]
+            console.log(operationArr)
+            firstNum = []
+        }
     }
+    operationArr = [...operationArr, Number(firstNum)]
+
+    for (let i = 0; i< operationArr.length; i++){
+        switch (operationArr[i]){
+            case "*":
+                operationArr.splice(i-1,3, operationArr[i-1] * operationArr[i+1]);
+                i=0
+                break;
+            case "/":
+                operationArr.splice(i-1,3, operationArr[i-1] / operationArr[i+1]);
+                i=0
+                break;
+            case "+":
+                console.log(operationArr[i])
+                operationArr.splice(i-1,3, operationArr[i-1] + operationArr[i+1]);
+                i=0
+                break;
+            case "-":
+                operationArr.splice(i-1,3, operationArr[i-1] - operationArr[i+1]);
+                i=0
+                break;
+        }
+        
+    }
+    calcScreen.value = operationArr
 });
