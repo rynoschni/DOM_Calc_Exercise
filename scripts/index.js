@@ -9,6 +9,7 @@ const clearButton = document.getElementById('clear')
 const memoryAddButton= document.getElementById('memory')
 const memoryReturnButton = document.getElementById('callMem')
 
+
 let inputArr = [];
 let numbReg = /\d/;
 let characterReg = /\D/
@@ -27,17 +28,18 @@ let calc = new Calculator()
 numberButtonNode.forEach(function (button){
     button.addEventListener('click', function(e){
         event.preventDefault();
-        inputArr = [...inputArr, button.value]
-        if (calcScreen.value == 0 || inputArr.length === 0){
+        if (inputArr.length === 0){
             calcScreen.value = button.value
+            //inputArr = [...inputArr, button.value]
         }
         else {calcScreen.value += button.value}
+        inputArr = [...inputArr, button.value]
     })
 })
  operationButtonNode.forEach((button)=>{
     button.addEventListener('click', (e)=>{
         event.preventDefault();
-        if (calcScreen.value == 0){
+        if (inputArr.length == 0){
             calcScreen.value = 0
         }
         else if (characterReg.test(inputArr[inputArr.length-1])){
@@ -60,14 +62,17 @@ deleteButton.addEventListener('click', (e) => {
     inputArr.splice(inputArr.length-1,1)
     newString = calcScreen.value.slice(0,calcScreen.value.length-1)
     calcScreen.value = newString
-    //console.log(inputArr)
+    if (inputArr.length === 0){
+        calcScreen.value = 0
+    }
 })
 
 memoryAddButton.addEventListener('click', (e) =>{
     if(numbReg.test(inputArr[inputArr.length-1])){
         memoryVal = [...inputArr]
     }
-    console.log(memoryVal)
+    //console.log("i",inputArr)
+    //console.log("m",memoryVal)
 });
 
 memoryReturnButton.addEventListener('click', (e) =>{
@@ -80,7 +85,10 @@ memoryReturnButton.addEventListener('click', (e) =>{
     }
 })
 
-equalButton.addEventListener('click',(e) => {
+let newString = ""
+
+
+equalButton.addEventListener('click',function(e){
     let firstNum = "";
     let operationArr = [];
     for (let char in inputArr){
@@ -89,17 +97,11 @@ equalButton.addEventListener('click',(e) => {
         }
         else {
             operationArr = [...operationArr, Number(firstNum), inputArr[char]]
-            firstNum = ""
+            firstNum = []
         }
     }
     operationArr = [...operationArr, Number(firstNum)]
     let i = 0;
-    `for (let oper in operatorArr){
-        while (operationArr.indexOf(oper) !== -1){
-            i = operationArr.indexOf(oper)
-            operation.Arr.splice(i -1, 3, calc[oper])
-        }
-    }`
     while (operationArr.indexOf("*") !== -1){
         i = operationArr.indexOf("*")
         operationArr.splice(i-1,3, operationArr[i-1] * operationArr[i+1]);
@@ -109,6 +111,7 @@ equalButton.addEventListener('click',(e) => {
         i = operationArr.indexOf("/")
         operationArr.splice(i-1,3, operationArr[i-1] / operationArr[i+1]);
     }
+
 
     while (operationArr.indexOf("+") !== -1){
         i = operationArr.indexOf("+")
