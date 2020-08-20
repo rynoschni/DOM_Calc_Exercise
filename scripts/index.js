@@ -8,6 +8,7 @@ const calcScreen = document.getElementById('input');
 const clearButton = document.getElementById('clear')
 const memoryAddButton= document.getElementById('memory')
 const memoryReturnButton = document.getElementById('callMem')
+const memoryRmButton = document.getElementById('mRemove')
 
 
 let inputArr = [];
@@ -71,9 +72,13 @@ memoryAddButton.addEventListener('click', (e) =>{
     if(numbReg.test(inputArr[inputArr.length-1])){
         memoryVal = [...inputArr]
     }
-    //console.log("i",inputArr)
-    //console.log("m",memoryVal)
 });
+
+memoryRmButton.addEventListener('click', (e)=>{
+    if(memoryVal.length !== 0){
+        memoryVal = []
+    }
+})
 
 memoryReturnButton.addEventListener('click', (e) =>{
     if(memoryVal.length !== 0 && characterReg.test(inputArr[inputArr.length-1]) ){
@@ -97,7 +102,7 @@ equalButton.addEventListener('click',function(e){
         }
         else {
             operationArr = [...operationArr, Number(firstNum), inputArr[char]]
-            firstNum = []
+            firstNum = ""
         }
     }
     operationArr = [...operationArr, Number(firstNum)]
@@ -112,7 +117,6 @@ equalButton.addEventListener('click',function(e){
         operationArr.splice(i-1,3, operationArr[i-1] / operationArr[i+1]);
     }
 
-
     while (operationArr.indexOf("+") !== -1){
         i = operationArr.indexOf("+")
         operationArr.splice(i-1,3, operationArr[i-1] + operationArr[i+1]);
@@ -126,7 +130,7 @@ equalButton.addEventListener('click',function(e){
     inputArr =[]
     for (let chars of String(operationArr[0])){
         inputArr = [...inputArr, chars]
-    }
+    }  
     console.log(inputArr)
  
     calcScreen.value = operationArr
