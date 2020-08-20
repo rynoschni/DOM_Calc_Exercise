@@ -1,16 +1,19 @@
 'use strict';
 
 const numberButtonNode = document.querySelectorAll('.number');
-const operationButtonNode = document.querySelectorAll('.operator')
-const equalButton = document.getElementById("result")
-const deleteButton = document.getElementById("delete")
+const operationButtonNode = document.querySelectorAll('.operator');
+const equalButton = document.getElementById("result");
+const deleteButton = document.getElementById("delete");
+const calcScreen = document.getElementById('input');
+const clearButton = document.getElementById('clear')
+const memoryAddButton= document.getElementById('memory')
+const memoryReturnButton = document.getElementById('callMem')
 
 let inputArr = [];
-const calcScreen = document.getElementById('input');
 let numbReg = /\d/;
-let equalPressed = false;
 let characterReg = /\D/
 let operatorArr = ["multi","div","add","sub"]
+let memoryVal = [];
 
 function Calculator(){}
 
@@ -27,13 +30,12 @@ numberButtonNode.forEach(function (button){
         inputArr = [...inputArr, button.value]
         if (calcScreen.value == 0 || inputArr.length === 0){
             calcScreen.value = button.value
-            //equalPressed = false
         }
         else {calcScreen.value += button.value}
     })
 })
- operationButtonNode.forEach(function(button){
-    button.addEventListener('click', function(e){
+ operationButtonNode.forEach((button)=>{
+    button.addEventListener('click', (e)=>{
         event.preventDefault();
         if (calcScreen.value == 0){
             calcScreen.value = 0
@@ -45,24 +47,40 @@ numberButtonNode.forEach(function (button){
             calcScreen.value += button.value
             inputArr = [...inputArr, button.value]}
         console.log(inputArr)
-        })
+    })
  })
 
-const clearButton = document.getElementById('clear')
-clearButton.addEventListener('click', function(e){
+clearButton.addEventListener('click', (e)=>{
     calcScreen.value = 0
     inputArr =[]
 })
-let newString = ""
 
 deleteButton.addEventListener('click', (e) => {
+    let newString = ""
     inputArr.splice(inputArr.length-1,1)
     newString = calcScreen.value.slice(0,calcScreen.value.length-1)
     calcScreen.value = newString
-    console.log(inputArr)
+    //console.log(inputArr)
 })
 
-equalButton.addEventListener('click',function(e){
+memoryAddButton.addEventListener('click', (e) =>{
+    if(numbReg.test(inputArr[inputArr.length-1])){
+        memoryVal = [...inputArr]
+    }
+    console.log(memoryVal)
+});
+
+memoryReturnButton.addEventListener('click', (e) =>{
+    if(memoryVal.length !== 0 && characterReg.test(inputArr[inputArr.length-1]) ){
+        console.log(characterReg.test(inputArr.length-1))
+        inputArr=[...inputArr, ...memoryVal]
+        for (let mem of memoryVal){
+            calcScreen.value += mem
+        }
+    }
+})
+
+equalButton.addEventListener('click',(e) => {
     let firstNum = "";
     let operationArr = [];
     for (let char in inputArr){
@@ -71,7 +89,7 @@ equalButton.addEventListener('click',function(e){
         }
         else {
             operationArr = [...operationArr, Number(firstNum), inputArr[char]]
-            firstNum = []
+            firstNum = ""
         }
     }
     operationArr = [...operationArr, Number(firstNum)]
@@ -101,13 +119,12 @@ equalButton.addEventListener('click',function(e){
         i = operationArr.indexOf("-")
         operationArr.splice(i-1,3, operationArr[i-1] - operationArr[i+1]);
     }
-    //equalPressed = true;
+
     inputArr =[]
     for (let chars of String(operationArr[0])){
         inputArr = [...inputArr, chars]
     }
     console.log(inputArr)
-    //inputArr = [operationArr]
  
     calcScreen.value = operationArr
 });
