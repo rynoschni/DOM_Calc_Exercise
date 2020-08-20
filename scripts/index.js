@@ -5,6 +5,7 @@ const operationButtonNode = document.querySelectorAll('.operator')
 const equalButton = document.getElementById("result")
 const deleteButton = document.getElementById("delete")
 
+
 let inputArr = [];
 const calcScreen = document.getElementById('input');
 let numbReg = /\d/;
@@ -32,7 +33,7 @@ numberButtonNode.forEach(function (button){
         else {calcScreen.value += button.value}
     })
 })
- operationButtonNode.forEach(function(button){
+operationButtonNode.forEach(function(button){
     button.addEventListener('click', function(e){
         event.preventDefault();
         if (calcScreen.value == 0){
@@ -46,7 +47,10 @@ numberButtonNode.forEach(function (button){
             inputArr = [...inputArr, button.value]}
         console.log(inputArr)
         })
+
+
  })
+
 
 const clearButton = document.getElementById('clear')
 clearButton.addEventListener('click', function(e){
@@ -91,6 +95,48 @@ equalButton.addEventListener('click',function(e){
         i = operationArr.indexOf("/")
         operationArr.splice(i-1,3, operationArr[i-1] / operationArr[i+1]);
     }
+
+
+
+let newString = ""
+
+deleteButton.addEventListener('click', (e) => {
+    inputArr.splice(inputArr.length-1,1)
+    newString = calcScreen.value.slice(0,calcScreen.value.length-1)
+    calcScreen.value = newString
+    console.log(inputArr)
+})
+
+equalButton.addEventListener('click',function(e){
+    let firstNum = "";
+    let operationArr = [];
+    for (let char in inputArr){
+        if (numbReg.test(inputArr[char]) || inputArr[char] == "."){
+            firstNum += inputArr[char]
+        }
+        else {
+            operationArr = [...operationArr, Number(firstNum), inputArr[char]]
+            firstNum = []
+        }
+    }
+    operationArr = [...operationArr, Number(firstNum)]
+    let i = 0;
+    `for (let oper in operatorArr){
+        while (operationArr.indexOf(oper) !== -1){
+            i = operationArr.indexOf(oper)
+            operation.Arr.splice(i -1, 3, calc[oper])
+        }
+    }`
+    while (operationArr.indexOf("*") !== -1){
+        i = operationArr.indexOf("*")
+        operationArr.splice(i-1,3, operationArr[i-1] * operationArr[i+1]);
+    }
+
+    while (operationArr.indexOf("/") !== -1){
+        i = operationArr.indexOf("/")
+        operationArr.splice(i-1,3, operationArr[i-1] / operationArr[i+1]);
+    }
+
 
     while (operationArr.indexOf("+") !== -1){
         i = operationArr.indexOf("+")
