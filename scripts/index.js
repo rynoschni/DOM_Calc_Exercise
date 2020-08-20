@@ -47,13 +47,55 @@ operationButtonNode.forEach(function(button){
             inputArr = [...inputArr, button.value]}
         console.log(inputArr)
         })
-})
+
+
+ })
+
 
 const clearButton = document.getElementById('clear')
 clearButton.addEventListener('click', function(e){
     calcScreen.value = 0
     inputArr =[]
 })
+let newString = ""
+
+deleteButton.addEventListener('click', (e) => {
+    inputArr.splice(inputArr.length-1,1)
+    newString = calcScreen.value.slice(0,calcScreen.value.length-1)
+    calcScreen.value = newString
+    console.log(inputArr)
+})
+
+equalButton.addEventListener('click',function(e){
+    let firstNum = "";
+    let operationArr = [];
+    for (let char in inputArr){
+        if (numbReg.test(inputArr[char]) || inputArr[char] == "."){
+            firstNum += inputArr[char]
+        }
+        else {
+            operationArr = [...operationArr, Number(firstNum), inputArr[char]]
+            firstNum = []
+        }
+    }
+    operationArr = [...operationArr, Number(firstNum)]
+    let i = 0;
+    `for (let oper in operatorArr){
+        while (operationArr.indexOf(oper) !== -1){
+            i = operationArr.indexOf(oper)
+            operation.Arr.splice(i -1, 3, calc[oper])
+        }
+    }`
+    while (operationArr.indexOf("*") !== -1){
+        i = operationArr.indexOf("*")
+        operationArr.splice(i-1,3, operationArr[i-1] * operationArr[i+1]);
+    }
+
+    while (operationArr.indexOf("/") !== -1){
+        i = operationArr.indexOf("/")
+        operationArr.splice(i-1,3, operationArr[i-1] / operationArr[i+1]);
+    }
+
 
 
 let newString = ""
@@ -94,6 +136,7 @@ equalButton.addEventListener('click',function(e){
         i = operationArr.indexOf("/")
         operationArr.splice(i-1,3, operationArr[i-1] / operationArr[i+1]);
     }
+
 
     while (operationArr.indexOf("+") !== -1){
         i = operationArr.indexOf("+")
