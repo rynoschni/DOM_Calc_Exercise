@@ -10,7 +10,9 @@ body{
     font-size: 1rem;
     margin: 0;
     padding: 0;
+    
 }
+
 
 .calculator {
     border: 1px solid #ccc;
@@ -19,13 +21,19 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 50%;
+    background-image: url('snake.png');
+    box-shadow: 0 8px 16px 0 #252525;
 }
-
+/* .header {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+} */
 .calculator-screen {
     width: 100%;
     font-size: 5rem;
-    height: 300px;
+    height: 200px;
     border: none;
     background-color: #252525;
     color: #fff;
@@ -40,7 +48,7 @@ button {
     background-color: #fff;
     border-radius: 3px;
     border: 1px solid #c4c4c4;
-    background-color: transparent;
+    background-color: ;
     font-size: 2rem;
     color: #333;
     background-image: linear-gradient(to bottom,transparent,transparent 50%,rgba(0,0,0,.04));
@@ -54,7 +62,98 @@ button:hover {
 
 .operator {
     color: #337cac;
-    grid-row-start: ;
+
+}
+.operator.plus{
+    grid-row-start: 5;
+    grid-column-start: 5;
+}
+
+.operator.minus{
+    grid-row-start: 4;
+    grid-column-start: 5;
+}
+
+.operator.multi{
+    grid-row-start: 3;
+    grid-column-start: 5;
+}
+.operator.divd{
+    grid-row-start: 2;
+    grid-column-start: 5;
+}
+
+.open-Paren {
+    grid-row-start: 1;
+    grid-column-start: 3;
+}
+.close-Paren {
+    grid-row-start: 1;
+    grid-column-start: 4;
+}
+.comma {
+    grid-row-start: 1;
+    grid-column-start: 5;
+}
+
+.sqRoot {
+    grid-row-start: 2;
+    grid-column-start: 1;
+}
+
+.expon {
+    grid-row-start: 3;
+    grid-column-start: 1;
+}
+
+.seven {
+    grid-row-start: 2;
+    grid-column-start: 2;
+}
+
+.eight {
+    grid-row-start: 2;
+    grid-column-start: 3;
+}
+.nine {
+    grid-row-start: 2;
+    grid-column-start: 4;
+}
+.four {
+    grid-row-start: 3;
+    grid-column-start: 2;
+}
+.five {
+    grid-row-start: 3;
+    grid-column-start: 3;
+}
+.six {
+    grid-row-start: 3;
+    grid-column-start: 4;
+}
+.one {
+    grid-row-start: 4;
+    grid-column-start: 2;
+}
+.two {
+    grid-row-start: 4;
+    grid-column-start: 3;
+}
+.three {
+    grid-row-start: 4;
+    grid-column-start: 4;
+}
+.zero {
+    grid-row-start: 5;
+    grid-column-start: 2;
+}
+.dot {
+    grid-row-start: 5;
+    grid-column-start: 3;
+}
+
+.number{
+    background-color: lightgray;
 }
 
 .all-clear {
@@ -69,12 +168,18 @@ button:hover {
     background-color: #f17377;
 }
 
+.delete {
+    grid-row-start: 1;
+    grid-column-start: 2;
+}
+
 .equal-sign {
     background-color: #2e86c0;
     border-color: #337cac;
     color: #fff;
-    grid-row-start: 5;
-    grid-column-start: 4;
+    grid-row-start: 6;
+    grid-column: 1 / 6;
+    
 }
 
 .equal-sign:hover {
@@ -83,8 +188,9 @@ button:hover {
 
 .calculator-keys {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 1rem;
-
+    
+    
 }
 
