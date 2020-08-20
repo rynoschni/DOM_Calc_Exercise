@@ -83,25 +83,44 @@ button:hover {
     grid-row-start: 2;
     grid-column-start: 5;
 }
-
-.open-Paren {
+.mAdd {
     grid-row-start: 1;
     grid-column-start: 3;
     border: 1px solid #c4c4c4;
-order: 1px solid #c4c4c4;
+    background-color: green;
+    color: white
+}
+.mRemove {
+    grid-row-start: 1;
+    grid-column-start: 4;
+    border: 1px solid #c4c4c4;
+    background-color: green;
+    color: white
+}
+.mReset {
+    grid-row-start: 1;
+    grid-column-start: 5c;
+    border: 1px solid #c4c4c4;
+    background-color: goldenrod;
+    color: black
+}
+.open-Paren {
+    grid-row-start: 4;
+    grid-column-start: 1;
+    border: 1px solid #c4c4c4;
     background-color: black;
     color: white
 }
 .close-Paren {
-    grid-row-start: 1;
-    grid-column-start: 4;
+    grid-row-start: 5;
+    grid-column-start: 1;
     border: 1px solid #c4c4c4;
     background-color: black;
     color: white
 }
 .comma {
-    grid-row-start: 1;
-    grid-column-start: 5;
+    grid-row-start: 5;
+    grid-column-start: 4;
     background-color: black;
     color: white
 }
